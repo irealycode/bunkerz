@@ -1,0 +1,223 @@
+{
+      "bannerTexts": [
+        {
+          "align": "center",
+          "color": "#00000",
+          "font": "ns",
+          "id": 0,
+          "margin": 10,
+          "parent_id": 1,
+          "showfont": false,
+          "size": 17,
+          "text": "home"
+        },
+        {
+          "align": "center",
+          "color": "#00000",
+          "font": "ns",
+          "id": 1,
+          "margin": 10,
+          "parent_id": 1,
+          "showfont": false,
+          "size": 17,
+          "text": "pages"
+        },
+        {
+          "align": "center",
+          "color": "#00000",
+          "font": "ns",
+          "id": 2,
+          "margin": 10,
+          "parent_id": 1,
+          "showfont": false,
+          "size": 17,
+          "text": "shop"
+        },
+        {
+          "align": "flex-start",
+          "color": "#181818",
+          "font": "ns",
+          "id": 3,
+          "margin": 0,
+          "parent_id": 4,
+          "showfont": false,
+          "size": 25,
+          "text": "the only way"
+        },
+        {
+          "align": "center",
+          "color": "#00000",
+          "font": "ns",
+          "id": 4,
+          "margin": 0,
+          "parent_id": 4,
+          "showfont": false,
+          "size": 40,
+          "text": "men with style"
+        },
+        {
+          "align": "center",
+          "color": "#414141",
+          "font": "ns",
+          "id": 5,
+          "margin": 0,
+          "parent_id": 4,
+          "showfont": false,
+          "size": 15,
+          "text": "50% off"
+        }
+      ],
+      "bannerImgs": [
+        {
+          "align": "center",
+          "cheight": true,
+          "cwidth": false,
+          "height": 15,
+          "id": 0,
+          "margin": 0,
+          "parent_id": 0,
+          "src": "eMq3IJ-llwEf7-Tkt3ti-mBXeVG-uVqbMp-ajdDhR.png",
+          "width": 80
+        },
+        {
+          "align": "center",
+          "cheight": false,
+          "cwidth": false,
+          "height": 25,
+          "id": 1,
+          "margin": 17,
+          "parent_id": 2,
+          "src": "F0M0hS-r7huFB-LhDYE2-Ud5Wgs-KbxbmQ-wdqmmq.png",
+          "width": 25
+        },
+        {
+          "align": "center",
+          "cheight": false,
+          "cwidth": false,
+          "height": 28,
+          "id": 2,
+          "margin": 15,
+          "parent_id": 2,
+          "src": "lsyki5-Ygy3q0-CJOStG-xdS18H-UiJjkc-aBVXDl.png",
+          "width": 28
+        },
+        {
+          "align": "center",
+          "cheight": false,
+          "cwidth": false,
+          "height": 28,
+          "id": 3,
+          "margin": 15,
+          "parent_id": 2,
+          "src": "iWDOE1-BBZjbD-df7FE1-lzmr6p-Ui8Obw-VIVxmW.png",
+          "width": 28
+        },
+        {
+          "align": "center",
+          "cheight": false,
+          "cwidth": true,
+          "fullh": true,
+          "fullw": false,
+          "height": 15,
+          "id": 4,
+          "margin": 0,
+          "parent_id": 3,
+          "src": "2HM1m9-TibVSR-GbIiyj-QkdIef-Ktv4CL-qcAOxZ.jpg",
+          "width": 1000
+        }
+      ],
+      "bannerDivs": [
+        {
+          "align": "center",
+          "fdirection": "column",
+          "id": 0,
+          "marginH": 0,
+          "parent": 0,
+          "show": false,
+          "y": -19
+        },
+        {
+          "align": "flex-start",
+          "fdirection": "row",
+          "id": 1,
+          "marginH": 20,
+          "parent": 0,
+          "show": false,
+          "y": -4
+        },
+        {
+          "align": "flex-end",
+          "fdirection": "row",
+          "id": 2,
+          "marginH": 25,
+          "parent": 0,
+          "show": false,
+          "y": 16
+        },
+        {
+          "align": "flex-end",
+          "fdirection": "column",
+          "id": 3,
+          "marginH": 0,
+          "parent": 1,
+          "show": true
+        },
+        {
+          "align": "center",
+          "fdirection": "column",
+          "id": 4,
+          "marginH": 0,
+          "parent": 1,
+          "show": false,
+          "y": 108
+        }
+      ],
+      "banners": [
+        {
+          "FullHeight": false,
+          "backgroundColor": "#ffffff",
+          "editAll": false,
+          "id": 0,
+          "image": { "align": "flex-end", "fullHeight": true, "size": 856 },
+          "marginX": 0,
+          "marginY": 0,
+          "name": "default",
+          "rows": 3,
+          "show": false,
+          "size": 70,
+          "type": "empty"
+        },
+        {
+          "FullHeight": false,
+          "FullmHeight": true,
+          "backgroundColor": "#ffffff",
+          "editAll": false,
+          "id": 1,
+          "image": { "align": "flex-end", "fullHeight": true, "size": 856 },
+          "marginX": 0,
+          "marginY": 0,
+          "name": "default",
+          "rows": 3,
+          "show": false,
+          "size": 90,
+          "type": "empty"
+        },
+        {
+          "FullHeight": true,
+          "backgroundColor": "#ffffff",
+          "editAll": true,
+          "id": 2,
+          "image": { "align": "flex-end", "fullHeight": true, "size": 856 },
+          "marginX": 50,
+          "marginY": 82,
+          "name": "products",
+          "rows": 3,
+          "show": false,
+          "size": 856,
+          "type": "products"
+        }
+      ]
+    }
+
+
+{"bannerTexts":[{"align":"center","color":"#00000","font":"ns","id":0,"margin":10,"parent_id":1,"showfont":false,"size":17,"text":"home"},{"align":"center","color":"#00000","font":"ns","id":1,"margin":10,"parent_id":1,"showfont":false,"size":17,"text":"pages"},{"align":"center","color":"#00000","font":"ns","id":2,"margin":10,"parent_id":1,"showfont":false,"size":17,"text":"shop"},{"align":"flex-start","color":"#181818","font":"ns","id":3,"margin":0,"parent_id":4,"showfont":false,"size":25,"text":"theonlyway"},{"align":"center","color":"#00000","font":"ns","id":4,"margin":0,"parent_id":4,"showfont":false,"size":40,"text":"menwithstyle"},{"align":"center","color":"#414141","font":"ns","id":5,"margin":0,"parent_id":4,"showfont":false,"size":15,"text":"50%off"}],"bannerImgs":[{"align":"center","cheight":true,"cwidth":false,"height":15,"id":0,"margin":0,"parent_id":0,"src":"eMq3IJ-llwEf7-Tkt3ti-mBXeVG-uVqbMp-ajdDhR.png","width":80},{"align":"center","cheight":false,"cwidth":false,"height":25,"id":1,"margin":17,"parent_id":2,"src":"F0M0hS-r7huFB-LhDYE2-Ud5Wgs-KbxbmQ-wdqmmq.png","width":25},{"align":"center","cheight":false,"cwidth":false,"height":28,"id":2,"margin":15,"parent_id":2,"src":"lsyki5-Ygy3q0-CJOStG-xdS18H-UiJjkc-aBVXDl.png","width":28},{"align":"center","cheight":false,"cwidth":false,"height":28,"id":3,"margin":15,"parent_id":2,"src":"iWDOE1-BBZjbD-df7FE1-lzmr6p-Ui8Obw-VIVxmW.png","width":28},{"align":"center","cheight":false,"cwidth":true,"fullh":true,"fullw":false,"height":15,"id":4,"margin":0,"parent_id":3,"src":"2HM1m9-TibVSR-GbIiyj-QkdIef-Ktv4CL-qcAOxZ.jpg","width":1000}],"bannerDivs":[{"align":"center","fdirection":"column","id":0,"marginH":0,"parent":0,"show":false,"y":-19},{"align":"flex-start","fdirection":"row","id":1,"marginH":20,"parent":0,"show":false,"y":-4},{"align":"flex-end","fdirection":"row","id":2,"marginH":25,"parent":0,"show":false,"y":16},{"align":"flex-end","fdirection":"column","id":3,"marginH":0,"parent":1,"show":true},{"align":"center","fdirection":"column","id":4,"marginH":0,"parent":1,"show":false,"y":108}],"banners":[{"FullHeight":false,"backgroundColor":"#ffffff","editAll":false,"id":0,"image":{"align":"flex-end","fullHeight":true,"size":856},"marginX":0,"marginY":0,"name":"default","rows":3,"show":false,"size":70,"type":"empty"},{"FullHeight":false,"FullmHeight":true,"backgroundColor":"#ffffff","editAll":false,"id":1,"image":{"align":"flex-end","fullHeight":true,"size":856},"marginX":0,"marginY":0,"name":"default","rows":3,"show":false,"size":90,"type":"empty"},{"FullHeight":true,"backgroundColor":"#ffffff","editAll":true,"id":2,"image":{"align":"flex-end","fullHeight":true,"size":856},"marginX":50,"marginY":82,"name":"products","rows":3,"show":false,"size":856,"type":"products"}]}
