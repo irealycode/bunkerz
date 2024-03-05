@@ -3,7 +3,6 @@ package login
 import (
 	"encoding/json"
 	"errors"
-	"fmt"
 	"net/http"
 
 	emailverifier "github.com/AfterShip/email-verifier"
@@ -20,8 +19,7 @@ func Login(w http.ResponseWriter, r *http.Request) (string, error) {
 		return "error decoding data", err
 	}
 	// check if the data exists
-	if len(userCheck.Password) == 0 {
-		fmt.Println("inside if len == 0")
+	if len(userCheck.Password) == 0 || len(userCheck.Email) == 0 {
 		return "Invalid data", errors.New("invalid data")
 	}
 
@@ -49,7 +47,7 @@ func Login(w http.ResponseWriter, r *http.Request) (string, error) {
 
 	// create token if exists
 	token, err := tools.GenerateJWToken(tools.TokenData{
-		Uid:   user.Uid,
+		Id:    user.Id.Hex(),
 		Email: user.Email,
 	})
 	if err != nil {

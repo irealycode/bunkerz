@@ -5,6 +5,7 @@ import (
 	"encoding/hex"
 	"errors"
 	"log"
+	"net/http"
 	"os"
 	"time"
 
@@ -33,7 +34,7 @@ func GenerateJWToken(payload TokenData) (string, error) {
 	claims["exp"] = time.Now().Add(1000 * time.Minute).Unix()
 	claims["authorized"] = true
 	claims["email"] = payload.Email
-	claims["uid"] = payload.Uid
+	claims["id"] = payload.Id
 	tokenString, err := token.SignedString([]byte(secretKey))
 
 	if err != nil {
@@ -43,7 +44,13 @@ func GenerateJWToken(payload TokenData) (string, error) {
 }
 
 // verify token and return uid if success and error if fail
-func VerifyToken(tokenString string) (string, error) {
+func VerifyToken(header http.Header) (string, error) {
+
+	token := header.Get("token")
+
+	if token == "" {
+		return "Couldn't find token", errors.New("couldn't find token")
+	}
 
 	err := godotenv.Load(".env")
 	if err != nil {
@@ -52,7 +59,7 @@ func VerifyToken(tokenString string) (string, error) {
 	key := os.Getenv("JWT_KEY")
 
 	claims := jwt.MapClaims{}
-	_, err = jwt.ParseWithClaims(tokenString, claims, func(token *jwt.Token) (interface{}, error) {
+	_, err = jwt.ParseWithClaims(token, claims, func(token *jwt.Token) (interface{}, error) {
 		return []byte(key), nil
 	})
 
@@ -62,7 +69,7 @@ func VerifyToken(tokenString string) (string, error) {
 
 	// return email
 	for k, v := range claims {
-		if k == "uid" {
+		if k == "id" {
 			return v.(string), nil
 		}
 	}

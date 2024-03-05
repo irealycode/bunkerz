@@ -5,6 +5,7 @@ import (
 	"errors"
 	"net/http"
 
+	"github.com/farm-er/pyhon-go/database/dataproduct"
 	"github.com/farm-er/pyhon-go/database/datastore"
 	"github.com/farm-er/pyhon-go/database/datauser"
 	"github.com/farm-er/pyhon-go/tools"
@@ -21,14 +22,17 @@ func GetStore(w http.ResponseWriter, r *http.Request) (string, error) {
 		return "Error decoding data", err
 	}
 
-	data.Token = r.Header.Get("token")
-
-	var user datauser.User
-
-	user.Uid, err = tools.VerifyToken(data.Token)
+	id, err := tools.VerifyToken(r.Header)
 
 	if err != nil {
 		return "Error verifying token", err
+	}
+	var user datauser.User
+
+	user.Id, err = primitive.ObjectIDFromHex(id)
+
+	if err != nil {
+		return "Couldn't get id", err
 	}
 
 	err = user.GetUserById()
@@ -46,7 +50,7 @@ func GetStore(w http.ResponseWriter, r *http.Request) (string, error) {
 		return "Couldn't find store", err
 	}
 
-	_, err = user.CheckExistentStore(store.Id)
+	err = user.CheckExistentStore(store.Id)
 
 	if err != nil {
 		return "This user doen't have a store", err
@@ -74,8 +78,6 @@ func AddStore(w http.ResponseWriter, r *http.Request) (string, error) {
 		return "Error decoding data", err
 	}
 
-	data.Token = r.Header.Get("token")
-
 	// need to check for the private field
 	if data.Name == "" || data.Subdomain == "" {
 		return "invalid data", errors.New("invalid data")
@@ -83,11 +85,17 @@ func AddStore(w http.ResponseWriter, r *http.Request) (string, error) {
 
 	// verify token
 	// returns the email of the user or error
-	var user datauser.User
-	user.Uid, err = tools.VerifyToken(data.Token)
+
+	id, err := tools.VerifyToken(r.Header)
 
 	if err != nil {
-		return user.Uid, err
+		return id, err
+	}
+	var user datauser.User
+	user.Id, err = primitive.ObjectIDFromHex(id)
+
+	if err != nil {
+		return "Couldn't get id", err
 	}
 
 	err = user.GetUserById()
@@ -108,12 +116,13 @@ func AddStore(w http.ResponseWriter, r *http.Request) (string, error) {
 
 	// create store
 	store := datastore.Store{
-		Id:        primitive.NewObjectID(),
-		Name:      data.Name,
-		Private:   data.Private,
-		Subdomain: data.Subdomain,
-		Products:  []datastore.Product{},
-		Inner:     datastore.Inner{},
+		Id:          primitive.NewObjectID(),
+		Name:        data.Name,
+		Private:     data.Private,
+		Subdomain:   data.Subdomain,
+		Products:    []dataproduct.Product{},
+		Inner:       datastore.Inner{},
+		ProductsIds: []primitive.ObjectID{},
 	}
 
 	err = store.AddStore()
@@ -153,12 +162,15 @@ func UpdateStoreInner(w http.ResponseWriter, r *http.Request) (string, error) {
 		return "Error decoding data", err
 	}
 
-	data.Token = r.Header.Get("token")
-
-	var user datauser.User
-	user.Uid, err = tools.VerifyToken(data.Token)
+	id, err := tools.VerifyToken(r.Header)
 	if err != nil {
-		return user.Uid, err
+		return id, err
+	}
+	var user datauser.User
+	user.Id, err = primitive.ObjectIDFromHex(id)
+
+	if err != nil {
+		return "Couldn't get id", err
 	}
 
 	err = user.GetUserById()
@@ -203,14 +215,17 @@ func DeleteStore(w http.ResponseWriter, r *http.Request) (string, error) {
 		return "Error decoding data", err
 	}
 
-	data.Token = r.Header.Get("token")
-
-	var user datauser.User
-
-	user.Uid, err = tools.VerifyToken(data.Token)
+	id, err := tools.VerifyToken(r.Header)
 
 	if err != nil {
 		return "Invalid token", err
+	}
+	var user datauser.User
+
+	user.Id, err = primitive.ObjectIDFromHex(id)
+
+	if err != nil {
+		return "Couldn't get id", err
 	}
 
 	err = user.GetUserById()
@@ -225,7 +240,7 @@ func DeleteStore(w http.ResponseWriter, r *http.Request) (string, error) {
 		return "Error checking password", err
 	}
 
-	_, err = user.CheckExistentStore(data.StoreId)
+	err = user.CheckExistentStore(data.StoreId)
 
 	if err != nil {
 		return "Error finding the store", err

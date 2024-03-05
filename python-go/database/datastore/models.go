@@ -1,6 +1,9 @@
 package datastore
 
-import "go.mongodb.org/mongo-driver/bson/primitive"
+import (
+	"github.com/farm-er/pyhon-go/database/dataproduct"
+	"go.mongodb.org/mongo-driver/bson/primitive"
+)
 
 type Image struct {
 	Align        string `json:"align" bson:"align"`
@@ -21,19 +24,6 @@ type Title struct {
 	Color string `json:"color" bson:"color"`
 	Font  string `json:"font" bson:"font"`
 	Size  int    `json:"size" bson:"size"`
-}
-
-type Product struct {
-	Description   string   `json:"description" bson:"description"`
-	CostPrice     string   `json:"cost_price" bson:"cost_price"`
-	OriginalPrice string   `json:"original_price" bson:"original_price"`
-	Price         int      `json:"price" bson:"price"`
-	Files         []string `json:"files" bson:"files"`
-	Size          []int    `json:"size" bson:"size"`
-	Colors        []string `json:"colors" bson:"colors"`
-	Quantity      float32  `json:"quantity" bson:"quantity"`
-	Pid           string   `json:"pid" bson:"pid"`
-	Active        bool     `json:"active" bson:"active"`
 }
 
 type BannerText struct {
@@ -101,10 +91,12 @@ type Inner struct {
 }
 
 type Store struct {
-	Id        primitive.ObjectID `json:"_id" bson:"_id"`
-	Name      string             `json:"name" bson:"name"`
-	Private   bool               `json:"private" bson:"private"`
-	Subdomain string             `json:"subdomain" bson:"subdomain"`
-	Products  []Product          `json:"products" bson:"products"`
-	Inner     Inner              `json:"inner" bson:"inner"`
+	Id             primitive.ObjectID    `json:"_id" bson:"_id"`
+	Name           string                `json:"name" bson:"name"`
+	Private        bool                  `json:"private" bson:"private"`
+	Subdomain      string                `json:"subdomain" bson:"subdomain"`
+	Inner          Inner                 `json:"inner" bson:"inner"`
+	Products       []dataproduct.Product `json:"products" bson:"products"`
+	NumberProducts int                   `json:"number_products" bson:"number_products"`
+	ProductsIds    []primitive.ObjectID  `json:"products_ids" bson:"products_ids"`
 }

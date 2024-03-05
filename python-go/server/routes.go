@@ -53,6 +53,18 @@ func (s *ApiServer) handleRegister(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
+	if r.Method == "OPTIONS" {
+		w.Header().Set("Content-Type", "text/html")
+		w.Header().Set("Allow", "OPTIONS, POST")
+		w.Header().Set("Access-Control-Allow-Origin", "http://bunkerz.bon")
+		w.Header().Set("Access-Control-Allow-Methods", "DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Access-Control-Max-Age", "86400")
+		w.Header().Set("Vary", "Origin")
+		w.Header().Set("Content-Length", "0")
+		return
+	}
+
 	tools.WriteJSON(w, http.StatusBadRequest, tools.ServerError{
 		Error:          "Invalid method ",
 		AdditionalData: r.Method,
@@ -62,6 +74,18 @@ func (s *ApiServer) handleRegister(w http.ResponseWriter, r *http.Request) {
 
 // GET to get user by just token
 func (s *ApiServer) handleUser(w http.ResponseWriter, r *http.Request) {
+
+	if r.Method == "OPTIONS" {
+		w.Header().Set("Content-Type", "text/html")
+		w.Header().Set("Allow", "OPTIONS, POST")
+		w.Header().Set("Access-Control-Allow-Origin", "http://bunkerz.bon")
+		w.Header().Set("Access-Control-Allow-Methods", "DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Access-Control-Max-Age", "86400")
+		w.Header().Set("Vary", "Origin")
+		w.Header().Set("Content-Length", "0")
+		return
+	}
 
 	if r.Method == "GET" {
 		body, err := user.GetUser(w, r)
@@ -95,6 +119,18 @@ func (s *ApiServer) handleUser(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *ApiServer) handleStore(w http.ResponseWriter, r *http.Request) {
+
+	if r.Method == "OPTIONS" {
+		w.Header().Set("Content-Type", "text/html")
+		w.Header().Set("Allow", "OPTIONS, POST")
+		w.Header().Set("Access-Control-Allow-Origin", "http://bunkerz.bon")
+		w.Header().Set("Access-Control-Allow-Methods", "DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Access-Control-Max-Age", "86400")
+		w.Header().Set("Vary", "Origin")
+		w.Header().Set("Content-Length", "0")
+		return
+	}
 
 	if r.Method == "GET" {
 		body, err := store.GetStore(w, r)
@@ -133,8 +169,20 @@ func (s *ApiServer) handleStore(w http.ResponseWriter, r *http.Request) {
 
 func (s *ApiServer) handleProduct(w http.ResponseWriter, r *http.Request) {
 
+	if r.Method == "OPTIONS" {
+		w.Header().Set("Content-Type", "text/html")
+		w.Header().Set("Allow", "OPTIONS, POST")
+		w.Header().Set("Access-Control-Allow-Origin", "http://bunkerz.bon")
+		w.Header().Set("Access-Control-Allow-Methods", "DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Access-Control-Max-Age", "86400")
+		w.Header().Set("Vary", "Origin")
+		w.Header().Set("Content-Length", "0")
+		return
+	}
+
 	if r.Method == "GET" {
-		body, err := product.AddProduct(w, r)
+		body, err := product.GetProduct(w, r)
 		if err != nil {
 			tools.ErrorWriter(w, err, body)
 		}
@@ -148,6 +196,10 @@ func (s *ApiServer) handleProduct(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 	if r.Method == "PUT" {
+		body, err := product.UpdateProduct(w, r)
+		if err != nil {
+			tools.ErrorWriter(w, err, body)
+		}
 		return
 	}
 	if r.Method == "DELETE" {
@@ -162,6 +214,18 @@ func (s *ApiServer) handleProduct(w http.ResponseWriter, r *http.Request) {
 }
 
 func (s *ApiServer) handleMedia(w http.ResponseWriter, r *http.Request) {
+
+	if r.Method == "OPTIONS" {
+		w.Header().Set("Content-Type", "text/html")
+		w.Header().Set("Allow", "OPTIONS, POST")
+		w.Header().Set("Access-Control-Allow-Origin", "http://bunkerz.bon")
+		w.Header().Set("Access-Control-Allow-Methods", "DELETE, GET, HEAD, OPTIONS, PATCH, POST, PUT")
+		w.Header().Set("Access-Control-Allow-Headers", "Content-Type")
+		w.Header().Set("Access-Control-Max-Age", "86400")
+		w.Header().Set("Vary", "Origin")
+		w.Header().Set("Content-Length", "0")
+		return
+	}
 
 	if r.Method == "POST" {
 		body, err := media.UploadFile(w, r)

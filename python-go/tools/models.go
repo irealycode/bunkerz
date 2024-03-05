@@ -1,7 +1,7 @@
 package tools
 
 type TokenData struct {
-	Uid   string `json:"uid"`
+	Id    string `json:"id"`
 	Email string `json:"email"`
 }
 

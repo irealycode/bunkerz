@@ -38,7 +38,8 @@ func Register(w http.ResponseWriter, r *http.Request) (string, error) {
 	// check if the user exists
 
 	var user datauser.User
-	user.Uid = id
+
+	user.Id = primitive.NewObjectID()
 
 	err = user.GetUserById()
 
@@ -56,7 +57,7 @@ func Register(w http.ResponseWriter, r *http.Request) (string, error) {
 	user.Name = newUser.Name
 	user.Password = password
 	user.Email = newUser.Email
-	user.Id = primitive.NewObjectID()
+
 	user.Stores = []datauser.Stores{}
 
 	err = user.AddUser()
@@ -67,7 +68,7 @@ func Register(w http.ResponseWriter, r *http.Request) (string, error) {
 
 	// create token
 	token, err := tools.GenerateJWToken(tools.TokenData{
-		Uid:   id,
+		Id:    id,
 		Email: newUser.Email,
 	})
 

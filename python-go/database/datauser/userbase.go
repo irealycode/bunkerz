@@ -13,7 +13,7 @@ import (
 // func GetUserById(id string) (User, error)
 
 func (u *User) GetUserById() error {
-	filter := bson.M{"uid": u.Uid}
+	filter := bson.M{"_id": u.Id}
 	err := database.OpenCollection("user").FindOne(context.Background(), filter).Decode(u)
 	if err != nil {
 		return err
@@ -35,7 +35,7 @@ func (u *User) GetUserByEmail() error {
 
 func (u *User) DeleteUserById() error {
 
-	filter := bson.M{"uid": u.Uid}
+	filter := bson.M{"_id": u.Id}
 
 	_, err := database.OpenCollection("user").DeleteOne(context.Background(), filter)
 
@@ -48,7 +48,7 @@ func (u *User) DeleteUserById() error {
 
 func (u *User) UpdateUserById(newName string) error {
 
-	filter := bson.M{"uid": u.Uid}
+	filter := bson.M{"_id": u.Id}
 	update := bson.D{{"$set", bson.D{{"name", newName}}}}
 
 	_, err := database.OpenCollection("user").UpdateOne(context.TODO(), filter, update)
@@ -61,7 +61,7 @@ func (u *User) UpdateUserById(newName string) error {
 }
 
 func (u *User) UpdateUserStores() error {
-	filter := bson.M{"email": u.Email}
+	filter := bson.M{"_id": u.Id}
 	update := bson.D{{"$set", bson.D{{"stores", u.Stores}}}}
 	_, err := database.OpenCollection("user").UpdateOne(context.TODO(), filter, update)
 	if err != nil {
@@ -70,14 +70,14 @@ func (u *User) UpdateUserStores() error {
 	return nil
 }
 
-func (u *User) CheckExistentStore(id primitive.ObjectID) (primitive.ObjectID, error) {
+func (u *User) CheckExistentStore(id primitive.ObjectID) error {
 
 	for _, store := range u.Stores {
 		if store.Id == id {
-			return store.Id, nil
+			return nil
 		}
 	}
-	return primitive.NilObjectID, errors.New("store with this information doesn't exist")
+	return errors.New("store with this information doesn't exist")
 }
 
 func (u *User) DeleteStoreById(id primitive.ObjectID) error {

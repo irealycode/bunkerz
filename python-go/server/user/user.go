@@ -6,19 +6,25 @@ import (
 
 	"github.com/farm-er/pyhon-go/database/datauser"
 	"github.com/farm-er/pyhon-go/tools"
+	"go.mongodb.org/mongo-driver/bson/primitive"
 )
 
 func GetUser(w http.ResponseWriter, r *http.Request) (string, error) {
 
-	token := r.Header.Get("token")
-
-	var user datauser.User
-	var err error
-	user.Uid, err = tools.VerifyToken(token)
+	id, err := tools.VerifyToken(r.Header)
 
 	if err != nil {
 		return "Invalid token", err
 	}
+
+	var user datauser.User
+
+	user.Id, err = primitive.ObjectIDFromHex(id)
+
+	if err != nil {
+		return "Couldn't get id", err
+	}
+
 	err = user.GetUserById()
 
 	if err != nil {
@@ -50,12 +56,17 @@ func UpdateUser(w http.ResponseWriter, r *http.Request) (string, error) {
 		return "Error decoding data", err
 	}
 
-	token := r.Header.Get("token")
-	var user datauser.User
-	user.Uid, err = tools.VerifyToken(token)
+	id, err := tools.VerifyToken(r.Header)
 
 	if err != nil {
 		return "Invalid token", err
+	}
+	var user datauser.User
+
+	user.Id, err = primitive.ObjectIDFromHex(id)
+
+	if err != nil {
+		return "Couldn't get id", err
 	}
 
 	err = user.UpdateUserById(data.Name)
@@ -85,14 +96,18 @@ func DeleteUser(w http.ResponseWriter, r *http.Request) (string, error) {
 		return "Error decoding data", err
 	}
 
-	token := r.Header.Get("token")
-
-	var user datauser.User
-
-	user.Uid, err = tools.VerifyToken(token)
+	id, err := tools.VerifyToken(r.Header)
 
 	if err != nil {
 		return "Invalid token", err
+	}
+
+	var user datauser.User
+
+	user.Id, err = primitive.ObjectIDFromHex(id)
+
+	if err != nil {
+		return "Couldn't get id", err
 	}
 
 	err = user.GetUserById()

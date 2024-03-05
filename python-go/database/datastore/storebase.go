@@ -34,7 +34,7 @@ func (s *Store) AddStore() error {
 
 func (s *Store) UpdateInnerStore() error {
 
-	update := bson.D{{"$set", bson.D{{"inner", s.Inner}}}}
+	update := bson.D{{Key: "$set", Value: bson.D{{Key: "inner", Value: s.Inner}}}}
 	_, err := database.OpenCollection("stores").UpdateByID(context.TODO(), s.Id, update)
 	if err != nil {
 		return err
@@ -44,11 +44,38 @@ func (s *Store) UpdateInnerStore() error {
 
 func (s *Store) AddProduct() error {
 
-	update := bson.D{{"$set", bson.D{{"products", s.Products}}}}
+	s.NumberProducts += 1
+
+	update := bson.D{{Key: "$set", Value: bson.D{{Key: "products", Value: s.Products}, {Key: "number_products", Value: s.NumberProducts}}}}
 	_, err := database.OpenCollection("stores").UpdateByID(context.TODO(), s.Id, update)
 	if err != nil {
 		return err
 	}
+	return nil
+}
+
+func (s *Store) IncrementProductsNum() error {
+
+	s.NumberProducts += 1
+
+	update := bson.D{{Key: "$set", Value: bson.D{{Key: "number_products", Value: s.NumberProducts}}}}
+	_, err := database.OpenCollection("stores").UpdateByID(context.TODO(), s.Id, update)
+	if err != nil {
+		return err
+	}
+	return nil
+}
+
+func (s *Store) AddProductId() error {
+
+	update := bson.D{{Key: "$set", Value: bson.D{{Key: "products_ids", Value: s.ProductsIds}}}}
+
+	_, err := database.OpenCollection("stores").UpdateByID(context.TODO(), s.Id, update)
+
+	if err != nil {
+		return err
+	}
+
 	return nil
 }
 
@@ -57,6 +84,19 @@ func (s *Store) DeleteStoreById() error {
 	filter := bson.M{"_id": s.Id}
 
 	_, err := database.OpenCollection("stores").DeleteOne(context.TODO(), filter)
+
+	if err != nil {
+		return err
+	}
+
+	return nil
+}
+
+func (s *Store) UpdateProduct() error {
+
+	update := bson.D{{Key: "$set", Value: bson.D{{Key: "products", Value: s.Products}}}}
+
+	_, err := database.OpenCollection("stores").UpdateByID(context.TODO(), s.Id, update)
 
 	if err != nil {
 		return err
