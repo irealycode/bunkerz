@@ -1,0 +1,13 @@
+<p onClick={async()=>{setBannerTexts(bannerTexts => [...bannerTexts].map(b => b.id === bannerText.id ? ({...b, showMargin:!bannerText.showMargin}) : b));await update()}} style={{cursor:'pointer',marginBottom:10,marginTop:0,fontFamily:'mb',fontSize:15,alignSelf:'flex-start',marginLeft:20}} >Margin {bannerText.showMargin?'▼':'►'}</p>
+                                                                            
+                                                                            {bannerText.showMargin?<div style={{width:'100%',position:'relative'}} >
+                                                                                <div style={{marginTop:0,display:'flex',flexDirection:'row',width:'100%',justifyContent:'flex-start',alignItems:'center',marginBottom:12,position:'relative'}} >
+                                                                                    <h3 style={{fontFamily:'mb',fontSize:16,marginLeft:35,marginTop:0,marginBottom:0,color:'rgba(0,0,0,0.8)'}} >Margin horizontal</h3>
+                                                                                    <input value={bannerText.marginH} type="number" onChange={(event => setBannerTexts(bannerTexts => [...bannerTexts].map(b => b.id === bannerText.id ? ({...b, marginH:parseInt(event.target.value)}) : b)))} placeholder="0" style={{position:'absolute',right:10,border:'2px solid #c9cbcd',width:'30%',height:15,padding:5,color:'rgba(0,0,0,0.9)',fontFamily:'mb',fontSize:17,backgroundColor:backgroundColorAdmin,borderRadius:5}}/>
+                                                                                </div>
+                                                                                <div style={{marginTop:0,display:'flex',flexDirection:'row',width:'100%',justifyContent:'flex-start',alignItems:'center',marginBottom:9,position:'relative'}} >
+                                                                                    <h3 style={{fontFamily:'mb',fontSize:16,marginLeft:35,marginTop:0,marginBottom:0,color:'rgba(0,0,0,0.8)'}} >Margin vertical</h3>
+                                                                                    <input value={bannerText.marginV} type="number" onChange={(event => setBannerTexts(bannerTexts => [...bannerTexts].map(b => b.id === bannerText.id ? ({...b, marginV:parseInt(event.target.value)}) : b)))} placeholder="0" style={{position:'absolute',right:10,border:'2px solid #c9cbcd',width:'30%',height:15,padding:5,color:'rgba(0,0,0,0.9)',fontFamily:'mb',fontSize:17,backgroundColor:backgroundColorAdmin,borderRadius:5}}/>
+                                                                                </div>
+
+                                                                            </div>:null}

@@ -1,0 +1,303 @@
+@font-face {
+    font-family: "ETH";   /*Can be any text*/
+    src: local("EthnocentricRg-Regular"),
+      url("../assets/EthnocentricRg-Regular.ttf") format("truetype");
+  }
+
+@font-face {
+font-family: "planet";   /*Can be any text*/
+src: local("Planet_X"),
+    url("../assets/Planet_X.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "ns";   /*Can be any text*/
+    src: local("Planet_NS_Expanded"),
+        url("../assets/Planet_NS_Expanded.ttf") format("truetype");
+    }
+
+@font-face {
+    font-family: "al";   /*Can be any text*/
+    src: local("Adequate-ExtraLight"),
+        url("../assets/Adequate-ExtraLight.ttf") format("truetype");
+    }
+
+@font-face {
+    font-family: "msb";   /*Can be any text*/
+    src: local("MYRIADPRO-SEMIBOLD"),
+        url("../assets/fonts/MYRIADPRO-SEMIBOLD.OTF") format("truetype");
+    }
+@font-face {
+    font-family: "mc";   /*Can be any text*/
+    src: local("MYRIADPRO-CONDIT"),
+        url("../assets/fonts/MYRIADPRO-REGULAR.OTF") format("truetype");
+    }
+@font-face {
+    font-family: "ml";   /*Can be any text*/
+    src: local("MYRIADPRO-Light"),
+        url("../assets/fonts/MyriadPro-Light.otf") format("truetype");
+    }
+
+@font-face {
+    font-family: "msl";   /*Can be any text*/
+    src: local("MYRIADPRO-Light"),
+        url("../assets/fonts/MYRIADPRO-SEMIBOLDIT.OTF") format("truetype");
+    }
+
+@font-face {
+    font-family: "mb";   /*Can be any text*/
+    src: local("MYRIADPRO-BOLD"),
+        url("../assets/fonts/MYRIADPRO-BOLD.OTF") format("truetype");
+    }
+@media (orientation: landscape) {
+    .login-body {
+        grid-auto-flow: column;
+    }
+}
+
+.login-body {
+    min-block-size: 100%;
+    min-inline-size: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    display: grid;
+    place-content: center;
+    overflow: hidden;
+    overflow-y: hidden;
+  }
+
+/* body{
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+} */
+
+/* div{
+    overflow: hidden;
+} */
+
+.title {
+    /* position: relative; */
+    color:black;
+    font-family: ns;
+    align-self:flex-start;
+    font-size: 26px;
+    margin-bottom: 0px;
+}
+
+.btnn {
+    position: relative;
+    width: 400px;
+    padding-top: 26px;
+    padding-bottom: 26px;
+    /* background-color: #ff9900; */
+    color: #ff9900;
+    font-family: ns;
+    font-size: 18px;
+    border-width: 0px;
+    margin-bottom: 0px;
+    align-self: center;
+    justify-content: center;
+    align-items: center;
+}
+
+.btnn::before {  
+    transform: scaleX(0);
+    transform-origin: bottom right;
+}
+
+.btnn:hover::before {
+transform: scaleX(1);
+transform-origin: bottom left;
+}
+
+.btnn::before {
+    content: " ";
+    display: block;
+    position: absolute;
+    top: 0; right: 0; bottom: 0; left: 0;
+    inset: 0 0 0 0;
+    background:#ff9900;
+    z-index: -1;
+    transition: transform .3s ease;
+    
+  }
+
+.btnn:hover {
+    color:black;
+}
+
+.email {
+    color:rgb(0, 0, 0);
+    font-family:'Courier New', Courier, monospace;
+    font-weight: lighter;
+    font-size: 14px;
+    border: 1.3px solid black;
+}
+.email:hover {
+    /* border-bottom: 1px solid #ff9900; */
+}
+.pass {
+    color:black;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: 14px;
+    border-width: 0px;
+}
+
+/* .title:hover {
+    background-color: white;
+    color: #ff9900;
+} */
+
+.loginForm {
+    border: 3px solid black;
+    border-radius: 20px;
+    overflow: hidden;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 0px;
+    margin-top: 0px;
+    background-color: rgb(255, 255, 255);
+    /* box-shadow: 0px 0px 50px rgb(165, 165, 165); */
+    z-index: 1;
+}
+
+.MakeForm {
+    border-radius: 20px;
+    overflow: hidden;
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-bottom: 0px;
+    background-color: white;
+    z-index: 1;
+}
+
+.Make-body {
+    min-block-size: 100%;
+    min-inline-size: 100%;
+    margin: 0;
+    box-sizing: border-box;
+    display: grid;
+    place-content: center;
+  }
+
+
+.Cshop{
+    background-color: white;
+    border:4px solid #ff9900;
+    background-image: url('../assets/shop.png');
+    background-size: 56px;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+}
+.Cshop:hover{
+    background-color:#ff9900;
+    border:4px solid black;
+    background-image: url('../assets/shopOG.png');
+    /* background-size: 56px;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center; */
+}
+.Cshop:focus{
+    background-color:#ff9900;
+    border:4px solid black;
+    background-image: url('../assets/shopOG.png');
+}
+/* .Cshop:focus > .Ctrade{
+    background-color:#ffffff;
+    border:4px solid #ff9900;
+    background-image: url('../assets/white_trade.png');
+} */
+
+.Ctrade {
+    background-color: white;
+    border:4px solid #ff9900;
+    margin-right: 20px;
+    background-image: url('../assets/white_trade.png');
+    background-size: 56px;
+    background-repeat: no-repeat;
+    background-position-x: center;
+    background-position-y: center;
+}
+.Ctrade:hover{
+    background-color:#ff9900;
+    border:4px solid black;
+    background-image: url('../assets/trade.png');
+
+}
+.Ctrade:focus{
+    background-color:#ff9900;
+    border:4px solid black;
+    background-image: url('../assets/trade.png');
+}
+
+
+.list {
+    height: 36px;
+    overflow: scroll;
+    transition: height .3s ease;
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+    background-color: black;
+
+}
+/* 
+.list:hover {
+    height: 180px;
+} */
+.list::-webkit-scrollbar {
+    display: none;
+  }
+
+.list h2 {
+    color: white;
+    border-radius: 13px;
+    font-family: ns;
+    width: 100%;
+    background-color: rgb(0, 0, 0);
+    border:0px
+}
+.list button {
+    color: white;
+    border-radius: 13px;
+    font-family: ns;
+    width: 100%;
+    padding: 0px;
+    background-color: rgb(6, 4, 4);
+    border:0px;
+}
+.list h2:hover {
+    color: rgb(0, 0, 0);
+    background-color: #ff9900;
+    font-family: ETH;
+}
+
+.webview {
+    -ms-overflow-style: none; 
+    scrollbar-width: none;
+}
+.webview::-webkit-scrollbar {
+    display: none;
+  }
+
+
+
+/* .test {
+    border-bottom: 1px solid #ff9900;
+} */
+/* 
+.test {
+    background-color: seagreen;
+}
+
+.test:focus + .list{
+    height:180px;
+} */

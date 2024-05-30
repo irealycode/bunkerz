@@ -1,0 +1,68 @@
+@font-face {
+    font-family: "ETH";   /*Can be any text*/
+    src: local("EthnocentricRg-Regular"),
+      url("../assets/EthnocentricRg-Regular.ttf") format("truetype");
+  }
+
+@font-face {
+font-family: "planet";   /*Can be any text*/
+src: local("Planet_X"),
+    url("../assets/Planet_X.ttf") format("truetype");
+}
+
+@font-face {
+    font-family: "ns";   /*Can be any text*/
+    src: local("Planet_NS_Expanded"),
+        url("../assets/Planet_NS_Expanded.ttf") format("truetype");
+    }
+  
+
+
+/* . {
+    color:black;
+    font-family: planet;
+} */
+
+.cpass,
+.fname {
+    color:black;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: 14px;
+    border-width: 0px;
+    border-bottom: 1px solid gray;
+}
+.cpass:hover,
+.fname:hover {
+    border-bottom: 1px solid #ff9900;
+}
+
+
+.pass {
+    color:black;
+    font-family:'Courier New', Courier, monospace;
+    font-weight: bolder;
+    font-size: 14px;
+    border-width: 0px;
+}
+/* .btn {
+    width: 300px;
+    height: 60px;
+    background-color: #ff9900;
+    color: white;
+    font-family: ns;
+    font-size: 18;
+    border-width: 0px;
+    margin-top: 10px;
+    
+} */
+/* .btn:hover {
+    background-color: white;
+    color: #ff9900;
+} */
+
+/* .loginForm {
+    margin-top: 30px;
+    border-radius: 20px;
+    overflow: hidden;
+} */
