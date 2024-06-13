@@ -35,6 +35,7 @@ function Admin() {
     const [productsTopBanner,setProductsTopBanner] = React.useState({}) 
     const [addWidget,setAddWidget] = React.useState({active:false,sectionId:null})
     const [addSlider,setAddSlider] = React.useState({active:false,sectionId:null})
+    const [showTree,setShowTree] = React.useState(false)
     const [addSection,setAddSection] = React.useState({active:false})
     const [page,setPage] = React.useState(false)// a dict did not work
     const [pagen,setPageN] = React.useState('home')
@@ -384,6 +385,7 @@ function Admin() {
         setAddSection({active:false})
         setAddSlider({...addSlider,active:false})
         setAddWidget({...addWidget,active:false})
+        setShowTree(false)
     }
 
     const scrollToId = (id) => {
@@ -440,7 +442,7 @@ function Admin() {
             <div className="webview" style={{position:'absolute',boxSizing:'border-box',height:height,width:360,backgroundColor:backgroundColorAdmin,left:0,alignItems:'center',justifyContent:'center',textAlign:'center',flexDirection:'column',borderRight:'2px solid black',zIndex:15,overflowX:'hidden',overflowY:'scroll'}} >
                     
                     <div style={{display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',width:'100%',height:63,position:'relative'}} >
-                        <img onClick={()=>{window.location.assign('/dashboard/'+jid+'/sid/'+sid)}} src={'/static/bunker_cont.png'} alt="" style={{cursor:'pointer',height:55,width:100,position:'absolute',left:10,top:0}}  />
+                        <img onClick={()=>{window.location.assign('/dashboard/'+jid+'/sid/'+sid)}} src={'/static/bunkerz_original.png'} alt="" style={{cursor:'pointer',height:55,width:150,position:'absolute',left:10,top:0,opacity:0.8}}  />
                         {/* <h1 style={{fontFamily:'mb',fontSize:18}} > {pagen=="home"?"Template":"Product display"}</h1> */}
                         <div style={{display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',position:'absolute',right:10}} >
                             <img src={'/static/profile.png'} alt="" style={{cursor:'pointer',height:25,width:25,marginRight:12}}  />
@@ -519,21 +521,21 @@ function Admin() {
 
                                     <div style={{marginTop:0,display:'flex',flexDirection:'row',width:'100%',justifyContent:'start',alignItems:'center',marginBottom:9,position:'relative'}} >
                                         <p style={{fontFamily:'mb',fontSize:16,marginLeft:35,color:'rgba(0,0,0,0.8)',marginBottom:0,marginTop:0}} >Full screen</p>
-                                        <div class="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
-                                            <input type="checkbox" checked={bn.FullHeight} class="sc-gJwTLC ikxBAC" onClick={async()=>{setBanners(Banners => [...Banners].map(b => b.id === bn.id ? ({...b, FullHeight:!bn.FullHeight,size:height-100}) : b));await update()}} />
+                                        <div className="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
+                                            <input type="checkbox" checked={bn.FullHeight} className="sc-gJwTLC ikxBAC" onClick={async()=>{setBanners(Banners => [...Banners].map(b => b.id === bn.id ? ({...b, FullHeight:!bn.FullHeight,size:height-100}) : b));await update()}} />
                                         </div>
-                                        {/* <input type="checkbox" checked={bn.FullHeight} class="sc-gJwTLC ikxBAC" onClick={async()=>{setBanners(Banners => [...Banners].map(b => b.id === bn.id ? ({...b, FullHeight:!bn.FullHeight,size:height-100}) : b));await update()}} /> */}
+                                        {/* <input type="checkbox" checked={bn.FullHeight} className="sc-gJwTLC ikxBAC" onClick={async()=>{setBanners(Banners => [...Banners].map(b => b.id === bn.id ? ({...b, FullHeight:!bn.FullHeight,size:height-100}) : b));await update()}} /> */}
                                     </div>
                                     <div style={{marginTop:0,display:'flex',flexDirection:'row',width:'100%',justifyContent:'flex-start',alignItems:'center',marginBottom:9,position:'relative'}} >
                                         <h3 style={{fontFamily:'mb',fontSize:16,marginLeft:35,marginTop:0,marginBottom:0,color:'rgba(0,0,0,0.8)'}} >Sticky</h3>
-                                        <div class="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
-                                            <input type="checkbox" class="sc-gJwTLC ikxBAC" checked={bn.sticky} onClick={async()=>{setBanners(Banners => [...Banners].map(b => b.id === bn.id ? ({...b, sticky:!bn.sticky}) : b));await update()}} />
+                                        <div className="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
+                                            <input type="checkbox" className="sc-gJwTLC ikxBAC" checked={bn.sticky} onClick={async()=>{setBanners(Banners => [...Banners].map(b => b.id === bn.id ? ({...b, sticky:!bn.sticky}) : b));await update()}} />
                                         </div>
                                     </div>
                                     <div style={{marginTop:0,display:'flex',flexDirection:'row',width:'100%',justifyContent:'flex-start',alignItems:'center',marginBottom:9,position:'relative'}} >
                                         <p style={{fontFamily:'mb',fontSize:16,marginLeft:35,color:'rgba(0,0,0,0.8)',marginBottom:0,marginTop:0}} >Subtract previous</p>
-                                        <div class="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
-                                            <input type="checkbox" class="sc-gJwTLC ikxBAC" checked={bn.FullmHeight} onClick={async()=>{setBanners(Banners => [...Banners].map(b => b.id === bn.id ? ({...b, FullmHeight:!bn.FullmHeight}) : b));await update()}} />
+                                        <div className="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
+                                            <input type="checkbox" className="sc-gJwTLC ikxBAC" checked={bn.FullmHeight} onClick={async()=>{setBanners(Banners => [...Banners].map(b => b.id === bn.id ? ({...b, FullmHeight:!bn.FullmHeight}) : b));await update()}} />
                                         </div>
                                     </div>
                                     <div style={{marginTop:0,display:'flex',flexDirection:'row',width:'100%',justifyContent:'flex-start',alignItems:'center',marginBottom:13,position:'relative'}} >
@@ -544,8 +546,8 @@ function Admin() {
                                                 <input value={bn.HequalWR} type="number" onChange={(event => setBanners(Banners => [...Banners].map(b => b.id === bn.id ? ({...b, HequalWR:parseFloat(event.target.value),HequalW:event.target.value!=''}) : b)))} style={{border:0,width:'100%',height:15,padding:5,color:'black',fontFamily:'mb',fontSize:17,backgroundColor:backgroundColorAdmin}} placeholder="69" />
                                                 <h3 style={{fontFamily:'mb',fontSize:16,marginRight:5,marginTop:0,marginBottom:0,color:'rgba(0,0,0,0.8)'}} >%</h3>
                                             </div>
-                                            <div class="checkbox-wrapper-2" style={{cursor:'pointer'}} >
-                                                <input type="checkbox" class="sc-gJwTLC ikxBAC" checked={bn.HequalW} onClick={async()=>{setBanners(Banners => [...Banners].map(b => b.id === bn.id ? ({...b, HequalW:!bn.HequalW}) : b));await update()}} />
+                                            <div className="checkbox-wrapper-2" style={{cursor:'pointer'}} >
+                                                <input type="checkbox" className="sc-gJwTLC ikxBAC" checked={bn.HequalW} onClick={async()=>{setBanners(Banners => [...Banners].map(b => b.id === bn.id ? ({...b, HequalW:!bn.HequalW}) : b));await update()}} />
                                             </div>
                                         </div>
                                     </div>
@@ -622,8 +624,8 @@ function Admin() {
 
                                                                             <div style={{marginTop:0,display:'flex',flexDirection:'row',width:'100%',justifyContent:'flex-start',alignItems:'center',marginBottom:9,position:'relative'}} >
                                                                                 <p style={{fontFamily:'mb',fontSize:16,marginLeft:20,color:'black',marginBottom:0,marginTop:0}} >Jump line</p>
-                                                                                <div class="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
-                                                                                    <input type="checkbox" class="sc-gJwTLC ikxBAC" checked={bannerText.jline} onChange={(event => setBannerTexts(bannerTexts => [...bannerTexts].map(b => b.id === bannerText.id ? ({...b, jline:!bannerText.jline}) : b)))} />
+                                                                                <div className="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
+                                                                                    <input type="checkbox" className="sc-gJwTLC ikxBAC" checked={bannerText.jline} onChange={(event => setBannerTexts(bannerTexts => [...bannerTexts].map(b => b.id === bannerText.id ? ({...b, jline:!bannerText.jline}) : b)))} />
                                                                                 </div>
                                                                             </div>
 
@@ -714,8 +716,8 @@ function Admin() {
                                                                             {bannerImg.showHeight?<div style={{width:'100%',position:'relative'}} >
                                                                                 <div style={{marginTop:0,display:'flex',flexDirection:'row',width:'100%',justifyContent:'flex-start',alignItems:'center',marginBottom:9,position:'relative'}} >
                                                                                     <h3 style={{fontFamily:'mb',fontSize:16,marginLeft:35,marginTop:0,marginBottom:0,color:'rgba(0,0,0,0.8)'}} >Usable</h3>
-                                                                                    <div class="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
-                                                                                        <input type="checkbox" class="sc-gJwTLC ikxBAC" checked={!bannerImg.cheight} onClick={()=>setBannerImgs(bannerImgs => [...bannerImgs].map(b => b.id === bannerImg.id ? ({...b, cheight:!bannerImg.cheight}) : b))} />
+                                                                                    <div className="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
+                                                                                        <input type="checkbox" className="sc-gJwTLC ikxBAC" checked={!bannerImg.cheight} onClick={()=>setBannerImgs(bannerImgs => [...bannerImgs].map(b => b.id === bannerImg.id ? ({...b, cheight:!bannerImg.cheight}) : b))} />
                                                                                     </div>
                                                                                 </div>
 
@@ -727,8 +729,8 @@ function Admin() {
                                                                                             <input value={bannerImg.height} type="number" onChange={(event => setBannerImgs(bannerImgs => [...bannerImgs].map(b => b.id === bannerImg.id ? ({...b, height:event.target.value}) : b)))} style={{border:0,width:'100%',height:15,padding:5,color:'black',fontFamily:'mb',fontSize:17,backgroundColor:backgroundColorAdmin}} placeholder="69" />
                                                                                             <h3 style={{fontFamily:'mb',fontSize:16,marginRight:5,marginTop:0,marginBottom:0,color:'rgba(0,0,0,0.8)'}} >{bannerImg.heightpx?'px':'%'}</h3>
                                                                                         </div>
-                                                                                        <div class="checkbox-wrapper-2" style={{cursor:'pointer'}} >
-                                                                                            <input type="checkbox" class="sc-gJwTLC ikxBAC" checked={bannerImg.heightpx} onClick={()=>setBannerImgs(bannerImgs => [...bannerImgs].map(b => b.id === bannerImg.id ? ({...b, heightpx:!bannerImg.heightpx}) : b))} />
+                                                                                        <div className="checkbox-wrapper-2" style={{cursor:'pointer'}} >
+                                                                                            <input type="checkbox" className="sc-gJwTLC ikxBAC" checked={bannerImg.heightpx} onClick={()=>setBannerImgs(bannerImgs => [...bannerImgs].map(b => b.id === bannerImg.id ? ({...b, heightpx:!bannerImg.heightpx}) : b))} />
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -741,8 +743,8 @@ function Admin() {
                                                                             {bannerImg.showWidth?<div style={{width:'100%',position:'relative'}} >
                                                                                 <div style={{marginTop:0,display:'flex',flexDirection:'row',width:'100%',justifyContent:'flex-start',alignItems:'center',marginBottom:9,position:'relative'}} >
                                                                                     <h3 style={{fontFamily:'mb',fontSize:16,marginLeft:35,marginTop:0,marginBottom:0,color:'rgba(0,0,0,0.8)'}} >Usable</h3>
-                                                                                    <div class="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
-                                                                                        <input type="checkbox" class="sc-gJwTLC ikxBAC" checked={!bannerImg.cwidth} onClick={()=>setBannerImgs(bannerImgs => [...bannerImgs].map(b => b.id === bannerImg.id ? ({...b, cwidth:!bannerImg.cwidth}) : b))} />
+                                                                                    <div className="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
+                                                                                        <input type="checkbox" className="sc-gJwTLC ikxBAC" checked={!bannerImg.cwidth} onClick={()=>setBannerImgs(bannerImgs => [...bannerImgs].map(b => b.id === bannerImg.id ? ({...b, cwidth:!bannerImg.cwidth}) : b))} />
                                                                                     </div>
                                                                                 </div>
 
@@ -754,8 +756,8 @@ function Admin() {
                                                                                             <input value={bannerImg.width} type="number" onChange={(event => setBannerImgs(bannerImgs => [...bannerImgs].map(b => b.id === bannerImg.id ? ({...b, width:event.target.value}) : b)))} style={{border:0,width:'100%',height:15,padding:5,color:'black',fontFamily:'mb',fontSize:17,backgroundColor:backgroundColorAdmin}} placeholder="69" />
                                                                                             <h3 style={{fontFamily:'mb',fontSize:16,marginRight:5,marginTop:0,marginBottom:0,color:'rgba(0,0,0,0.8)'}} >{bannerImg.widthpx?'px':'%'}</h3>
                                                                                         </div>
-                                                                                        <div class="checkbox-wrapper-2" style={{cursor:'pointer'}} >
-                                                                                            <input type="checkbox" class="sc-gJwTLC ikxBAC" checked={bannerImg.widthpx} onClick={()=>setBannerImgs(bannerImgs => [...bannerImgs].map(b => b.id === bannerImg.id ? ({...b, widthpx:!bannerImg.widthpx}) : b))} />
+                                                                                        <div className="checkbox-wrapper-2" style={{cursor:'pointer'}} >
+                                                                                            <input type="checkbox" className="sc-gJwTLC ikxBAC" checked={bannerImg.widthpx} onClick={()=>setBannerImgs(bannerImgs => [...bannerImgs].map(b => b.id === bannerImg.id ? ({...b, widthpx:!bannerImg.widthpx}) : b))} />
                                                                                         </div>
                                                                                     </div>
                                                                                 </div>
@@ -773,14 +775,14 @@ function Admin() {
                                                                             </div> */}
                                                                             <div style={{marginTop:0,display:'flex',flexDirection:'row',width:'100%',justifyContent:'flex-start',alignItems:'center',marginBottom:9,position:'relative'}} >
                                                                                 <p style={{fontFamily:'mb',fontSize:16,marginLeft:20,color:'black',marginBottom:0,marginTop:0}} >Full height</p>
-                                                                                <div class="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
-                                                                                    <input type="checkbox" class="sc-gJwTLC ikxBAC" checked={bannerImg.fullh} onClick={()=>setBannerImgs(bannerImgs => [...bannerImgs].map(b => b.id === bannerImg.id ? ({...b, fullh:!bannerImg.fullh,cwidth:!bannerImg.fullh}) : b))} />
+                                                                                <div className="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
+                                                                                    <input type="checkbox" className="sc-gJwTLC ikxBAC" checked={bannerImg.fullh} onClick={()=>setBannerImgs(bannerImgs => [...bannerImgs].map(b => b.id === bannerImg.id ? ({...b, fullh:!bannerImg.fullh,cwidth:!bannerImg.fullh}) : b))} />
                                                                                 </div>
                                                                             </div>
                                                                             <div style={{marginTop:0,display:'flex',flexDirection:'row',width:'100%',justifyContent:'flex-start',alignItems:'center',marginBottom:9,position:'relative'}} >
                                                                                 <p style={{fontFamily:'mb',fontSize:16,marginLeft:20,color:'black',marginBottom:0,marginTop:0}} >Full width</p>
-                                                                                <div class="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
-                                                                                    <input type="checkbox" class="sc-gJwTLC ikxBAC" checked={bannerImg.fullw} onClick={()=>setBannerImgs(bannerImgs => [...bannerImgs].map(b => b.id === bannerImg.id ? ({...b, fullw:!bannerImg.fullw,cheight:!bannerImg.fullw}) : b))} />
+                                                                                <div className="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
+                                                                                    <input type="checkbox" className="sc-gJwTLC ikxBAC" checked={bannerImg.fullw} onClick={()=>setBannerImgs(bannerImgs => [...bannerImgs].map(b => b.id === bannerImg.id ? ({...b, fullw:!bannerImg.fullw,cheight:!bannerImg.fullw}) : b))} />
                                                                                 </div>
                                                                             </div>
 
@@ -949,8 +951,8 @@ function Admin() {
 
                                                                             <div style={{marginTop:0,display:'flex',flexDirection:'row',width:'100%',justifyContent:'flex-start',alignItems:'center',marginBottom:9,position:'relative'}} >
                                                                                 <p style={{fontFamily:'mb',fontSize:16,marginLeft:20,color:'black',marginBottom:0,marginTop:0}} >Jump line</p>
-                                                                                <div class="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
-                                                                                    <input type="checkbox" class="sc-gJwTLC ikxBAC" checked={bannerButton.jline} onChange={(event => setBannerButtons(bannerButtons => [...bannerButtons].map(b => b.id === bannerButton.id ? ({...b, jline:!bannerButton.jline}) : b)))} />
+                                                                                <div className="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
+                                                                                    <input type="checkbox" className="sc-gJwTLC ikxBAC" checked={bannerButton.jline} onChange={(event => setBannerButtons(bannerButtons => [...bannerButtons].map(b => b.id === bannerButton.id ? ({...b, jline:!bannerButton.jline}) : b)))} />
                                                                                 </div>
                                                                             </div>
 
@@ -1037,8 +1039,8 @@ function Admin() {
                                                                 <h3 style={{fontFamily:'mb',fontSize:16,marginLeft:35,marginTop:0,marginBottom:0,color:'rgba(0,0,0,0.8)',alignSelf:'start'}} >X ▼</h3>
                                                                 <div style={{marginTop:0,display:'flex',flexDirection:'row',width:'100%',justifyContent:'flex-start',alignItems:'center',marginBottom:9,position:'relative'}} >
                                                                     <h3 style={{fontFamily:'mb',fontSize:16,marginLeft:45,marginTop:0,marginBottom:0,color:'rgba(0,0,0,0.8)'}} >Switch</h3>
-                                                                    <div class="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
-                                                                        <input type="checkbox" class="sc-gJwTLC ikxBAC" checked={bannerDiv.Xswitch} onClick={()=>setBannerDivs(bannerDivs => [...bannerDivs].map(b => b.id === bannerDiv.id? ({...b, Xswitch:!bannerDiv.Xswitch,align:0}) : b))} />
+                                                                    <div className="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
+                                                                        <input type="checkbox" className="sc-gJwTLC ikxBAC" checked={bannerDiv.Xswitch} onClick={()=>setBannerDivs(bannerDivs => [...bannerDivs].map(b => b.id === bannerDiv.id? ({...b, Xswitch:!bannerDiv.Xswitch,align:0}) : b))} />
                                                                     </div>
                                                                 </div>
                                                                 <div style={{marginTop:0,display:'flex',flexDirection:'row',width:'100%',justifyContent:'flex-start',alignItems:'center',marginBottom:13,position:'relative'}} >
@@ -1049,8 +1051,8 @@ function Admin() {
                                                                             <input value={bannerDiv.align} type="number" onChange={(event => {setBannerDivs(bannerDivs => [...bannerDivs].map(b => b.id === bannerDiv.id? ({...b, align:parseInt(event.target.value)}) : b))})} style={{border:0,width:'100%',height:15,padding:5,color:'black',fontFamily:'mb',fontSize:17,backgroundColor:backgroundColorAdmin}} placeholder="69" />
                                                                             <h3 style={{fontFamily:'mb',fontSize:16,marginRight:5,marginTop:0,marginBottom:0,color:'rgba(0,0,0,0.8)'}} >{bannerDiv.alignpx?'px':'%'}</h3>
                                                                         </div>
-                                                                        <div class="checkbox-wrapper-2" style={{cursor:'pointer'}} >
-                                                                            <input type="checkbox" class="sc-gJwTLC ikxBAC" checked={bannerDiv.alignpx} onClick={()=>setBannerDivs(bannerDivs => [...bannerDivs].map(b => b.id === bannerDiv.id? ({...b, alignpx:!bannerDiv.alignpx}) : b))} />
+                                                                        <div className="checkbox-wrapper-2" style={{cursor:'pointer'}} >
+                                                                            <input type="checkbox" className="sc-gJwTLC ikxBAC" checked={bannerDiv.alignpx} onClick={()=>setBannerDivs(bannerDivs => [...bannerDivs].map(b => b.id === bannerDiv.id? ({...b, alignpx:!bannerDiv.alignpx}) : b))} />
                                                                         </div>
                                                                     </div>:
 
@@ -1063,8 +1065,8 @@ function Admin() {
                                                                 <h3 style={{fontFamily:'mb',fontSize:16,marginLeft:35,marginTop:0,marginBottom:0,color:'rgba(0,0,0,0.8)',alignSelf:'start'}} >Y ▼</h3>
                                                                 <div style={{marginTop:0,display:'flex',flexDirection:'row',width:'100%',justifyContent:'flex-start',alignItems:'center',marginBottom:9,position:'relative'}} >
                                                                     <h3 style={{fontFamily:'mb',fontSize:16,marginLeft:45,marginTop:0,marginBottom:0,color:'rgba(0,0,0,0.8)'}} >Switch</h3>
-                                                                    <div class="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
-                                                                        <input type="checkbox" class="sc-gJwTLC ikxBAC" checked={bannerDiv.Yswitch} onClick={()=>setBannerDivs(bannerDivs => [...bannerDivs].map(b => b.id === bannerDiv.id? ({...b, Yswitch:!bannerDiv.Yswitch,y:0}) : b))} />
+                                                                    <div className="checkbox-wrapper-2" style={{position:'absolute',right:10,cursor:'pointer'}} >
+                                                                        <input type="checkbox" className="sc-gJwTLC ikxBAC" checked={bannerDiv.Yswitch} onClick={()=>setBannerDivs(bannerDivs => [...bannerDivs].map(b => b.id === bannerDiv.id? ({...b, Yswitch:!bannerDiv.Yswitch,y:0}) : b))} />
                                                                     </div>
                                                                 </div>
                                                                 <div style={{marginTop:0,display:'flex',flexDirection:'row',width:'100%',justifyContent:'flex-start',alignItems:'center',marginBottom:13,position:'relative'}} >
@@ -1075,8 +1077,8 @@ function Admin() {
                                                                             <input value={bannerDiv.y} type="number" onChange={(event => {setBannerDivs(bannerDivs => [...bannerDivs].map(b => b.id === bannerDiv.id? ({...b, y:parseInt(event.target.value)}) : b))})} style={{border:0,width:'100%',height:15,padding:5,color:'black',fontFamily:'mb',fontSize:17,backgroundColor:backgroundColorAdmin}} placeholder="69" />
                                                                             <h3 style={{fontFamily:'mb',fontSize:16,marginRight:5,marginTop:0,marginBottom:0,color:'rgba(0,0,0,0.8)'}} >{bannerDiv.ypx?'px':'%'}</h3>
                                                                         </div>
-                                                                        <div class="checkbox-wrapper-2" style={{cursor:'pointer'}} >
-                                                                            <input type="checkbox" class="sc-gJwTLC ikxBAC" checked={bannerDiv.ypx} onClick={()=>setBannerDivs(bannerDivs => [...bannerDivs].map(b => b.id === bannerDiv.id? ({...b, ypx:!bannerDiv.ypx}) : b))} />
+                                                                        <div className="checkbox-wrapper-2" style={{cursor:'pointer'}} >
+                                                                            <input type="checkbox" className="sc-gJwTLC ikxBAC" checked={bannerDiv.ypx} onClick={()=>setBannerDivs(bannerDivs => [...bannerDivs].map(b => b.id === bannerDiv.id? ({...b, ypx:!bannerDiv.ypx}) : b))} />
                                                                         </div>
                                                                     </div>:
 
@@ -1102,8 +1104,8 @@ function Admin() {
                                                                     <input type="number" value={bannerDiv.height}  onChange={(event => setBannerDivs(bannerDivs => [...bannerDivs].map(b => b.id === bannerDiv.id ? ({...b, height:parseInt(event.target.value)}) : b)))} style={{border:0,width:'100%',height:15,padding:5,color:'black',fontFamily:'mb',fontSize:17,backgroundColor:backgroundColorAdmin}} placeholder="69" />
                                                                     <h3 style={{fontFamily:'mb',fontSize:16,marginRight:5,marginTop:0,marginBottom:0,color:'rgba(0,0,0,0.8)'}} >{bannerDiv.hdivpx?'px':'%'}</h3>
                                                                 </div>
-                                                                <div class="checkbox-wrapper-2" style={{cursor:'pointer'}} >
-                                                                    <input type="checkbox" class="sc-gJwTLC ikxBAC" checked={!bannerDiv.hdivpx} onClick={()=>setBannerDivs(bannerDivs => [...bannerDivs].map(b => b.id === bannerDiv.id? ({...b, hdivpx:!bannerDiv.hdivpx}) : b))} />
+                                                                <div className="checkbox-wrapper-2" style={{cursor:'pointer'}} >
+                                                                    <input type="checkbox" className="sc-gJwTLC ikxBAC" checked={!bannerDiv.hdivpx} onClick={()=>setBannerDivs(bannerDivs => [...bannerDivs].map(b => b.id === bannerDiv.id? ({...b, hdivpx:!bannerDiv.hdivpx}) : b))} />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1117,8 +1119,8 @@ function Admin() {
                                                                     <input type="number" value={bannerDiv.width}  onChange={(event => setBannerDivs(bannerDivs => [...bannerDivs].map(b => b.id === bannerDiv.id ? ({...b, width:parseInt(event.target.value)}) : b)))} style={{border:0,width:'100%',height:15,padding:5,color:'black',fontFamily:'mb',fontSize:17,backgroundColor:backgroundColorAdmin}} placeholder="69" />
                                                                     <h3 style={{fontFamily:'mb',fontSize:16,marginRight:5,marginTop:0,marginBottom:0,color:'rgba(0,0,0,0.8)'}} >{bannerDiv.wdivpx?'px':'%'}</h3>
                                                                 </div>
-                                                                <div class="checkbox-wrapper-2" style={{cursor:'pointer'}} >
-                                                                    <input type="checkbox" class="sc-gJwTLC ikxBAC" checked={!bannerDiv.wdivpx} onClick={()=>setBannerDivs(bannerDivs => [...bannerDivs].map(b => b.id === bannerDiv.id? ({...b, wdivpx:!bannerDiv.wdivpx}) : b))} />
+                                                                <div className="checkbox-wrapper-2" style={{cursor:'pointer'}} >
+                                                                    <input type="checkbox" className="sc-gJwTLC ikxBAC" checked={!bannerDiv.wdivpx} onClick={()=>setBannerDivs(bannerDivs => [...bannerDivs].map(b => b.id === bannerDiv.id? ({...b, wdivpx:!bannerDiv.wdivpx}) : b))} />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -1352,6 +1354,9 @@ function Admin() {
                     
                 </div>
                 <div style={{display:'flex',flexDirection:'row',position:'absolute',right:10}} >
+                    <button onClick={()=>{closeEverithing();setShowTree(!showTree)}} style={{paddingTop:10,backgroundColor:'white',paddingBottom:10,paddingRight:17,paddingLeft:17,marginRight:10,cursor:'pointer',display:'flex',alignItems:'center',fontFamily:'mb',color:'black',fontSize:16,borderRadius:3,border:'2px solid black'}} >
+                        <img src={"/static/tree.png"} style={{height:20,width:20,alignSelf:'center'}} />
+                    </button>
                     <button style={{paddingTop:10,backgroundColor:'white',paddingBottom:10,paddingRight:17,paddingLeft:17,marginRight:10,cursor:'pointer',fontFamily:'mb',color:'black',fontSize:16,borderRadius:3,border:'2px solid black'}} >
                         Close
                     </button>
@@ -1363,6 +1368,107 @@ function Admin() {
                     </button>
                 </div>
                 
+            </div>
+
+            <div className="addWidget" style={{height:height-65,width:280,borderRight:'2px solid #CAC2B6',overflowX:'hidden',overflowY:'scroll',boxSizing:'border-box',backgroundColor:'#F6F3EF',position:'absolute',top:65,left:showTree?360:80,zIndex:12,display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'start'}} >
+                    <p style={{fontFamily:'mb',fontSize:17,color:'rgba(0,0,0,0.7)',margin:0,marginTop:15}} >Tree</p>
+                    <img src={'/static/shortArrow.png'} onClick={()=>{setShowTree(false)}} style={{cursor:'pointer',height:15,width:15,opacity:0.4,transform:'rotate(180deg)',position:'absolute',top:10,right:10}} />
+                    
+                    <div style={{width:'90%'}} >
+                    <div className="tree" >
+                            {
+                                Banners.map((bn,y)=>{
+                                    return(
+                                        <>
+                                            <div className="treebox" style={{backgroundColor:'rgb(255, 255, 255)',color: 'rgba(0,0,0,0.9)'}} >{bn.name}</div>
+                                            <div className="tree">
+                                                {
+                                                    bannerDivs.map((bd,yy)=>{
+                                                        if (bd.parent==bn.id) {
+                                                            return(
+                                                                <>
+                                                                    <div className="treebox" style={{backgroundColor:'rgb(242, 240, 236)',color: 'rgba(0,0,0,0.8)'}}>Container</div>
+                                                                    <div key={bd.id} className="tree">
+                                                                    
+                                                                    {
+                                                                        bannerTexts.map((bt,yyy)=>{
+                                                                            if (bt.parent_id==bd.id) {
+                                                                                return(<div style={{backgroundColor:'rgb(234, 230, 223)',color: 'rgba(0,0,0,0.7)'}}  key={bt.id} className="treebox">Text box</div>)
+                                                                                
+                                                                            }else{
+                                                                                return null
+                                                                            }
+                                                                        })
+                                                                    }
+                                                                    {
+                                                                        bannerImgs.map((bi,yyy)=>{
+                                                                            if (bi.parent_id==bd.id) {
+                                                                                return(<div style={{backgroundColor:'rgb(234, 230, 223)',color: 'rgba(0,0,0,0.7)'}}  key={bi.id} className="treebox">Image box</div>)
+                                                                                
+                                                                            }else{
+                                                                                return null
+                                                                            }
+                                                                        })
+                                                                    }
+                                                                    {
+                                                                        bannerButtons.map((bb,yyy)=>{
+                                                                            if (bb.parent_id==bd.id) {
+                                                                                return(<div style={{backgroundColor:'rgb(234, 230, 223)',color: 'rgba(0,0,0,0.7)'}}  key={bb.id} className="treebox">Button</div>)
+                                                                                
+                                                                            }else{
+                                                                                return null
+                                                                            }
+                                                                        })
+                                                                    }
+                                                                    {
+                                                                        showSliders.map((ss,yyy)=>{
+                                                                            if (ss.parent_id==bd.id) {
+                                                                                return(<div style={{backgroundColor:'rgb(234, 230, 223)'}} key={ss.id} className="treebox">Show slider</div>)
+                                                                                
+                                                                            }else{
+                                                                                return null
+                                                                            }
+                                                                        })
+                                                                    }
+                                                                    </div>
+                                                                </>
+                                                            )
+                                                        }else{
+                                                            return null
+                                                        }
+                                                        
+                                                    })
+                                                }
+                                            </div>
+                                        </>
+                                    )
+                                })
+                            }
+                        </div>
+                        {/* <div className="tree">
+                            
+                            <div className="treebox">First level</div>
+                            <div className="tree">
+                                <div className="treebox">Second level</div>
+                                <div className="treebox">Second level</div>
+                                <div className="tree">
+                                    <div className="treebox">Third level</div>
+                                    <div className="tree">
+                                        <div className="treebox">Fourth level</div>
+                                        <div className="treebox">Fourth level</div>
+                                        <div className="treebox">Fourth level</div>
+                                    </div>
+                                    <div className="treebox">Third level</div>
+                                    <div className="tree">
+                                        <div className="treebox">Fourth level</div>
+                                        <div className="treebox">Fourth level</div>
+                                        <div className="treebox">Fourth level</div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div className="treebox">First level</div>
+                        </div> */}
+                    </div>
             </div>
 
             <div className="addWidget" style={{height:height-65,width:240,borderRight:'2px solid #CAC2B6',overflow:'hidden',boxSizing:'border-box',backgroundColor:'#F6F3EF',position:'absolute',top:65,left:addWidget.active?360:120,zIndex:12,display:'flex',flexDirection:'column',alignItems:'center',justifyContent:'start'}} >
@@ -1404,8 +1510,8 @@ function Admin() {
                             onDragOver={(event) => onDragOver(event, index)}
                             onDrop={onDrop}
                             >
-                                <div onClick={()=>{setBanners(Banners => [...Banners].map(b => b.id === row.id ? ({...b, editable:true}) : b))}} style={{cursor:'pointer',border:'2px solid #CAC2B6',width:'90%',margin:'5px 0px',padding:5,color:'rgba(0,0,0,0.8)',fontFamily:'mb',fontSize:17,backgroundColor:backgroundColorAdmin,borderRadius:3,display:'flex',alignItems:'center',justifyContent:'start',position:'relative'}} >
-                                    <img src={'/static/3dots.png'} style={{height:23,width:23,opacity:0.7,marginBottom:2,position:'absolute',left:4}} />
+                                <div onClick={()=>{setBanners(Banners => [...Banners].map(b => b.id === row.id ? ({...b, editable:true}) : b))}} style={{cursor:'grab',border:'2px solid #CAC2B6',width:'90%',margin:'5px 0px',padding:5,color:'rgba(0,0,0,0.8)',fontFamily:'mb',fontSize:17,backgroundColor:backgroundColorAdmin,borderRadius:3,display:'flex',alignItems:'center',justifyContent:'start',position:'relative'}} >
+                                    <img src={'/static/column.png'} style={{height:23,width:16,opacity:0.5,marginBottom:2,position:'absolute',left:4}} />
                                     <img onClick={()=>Rmb(row.id)} src={'/static/trash.png'} style={{height:15,width:15,opacity:0.7,marginBottom:2,position:'absolute',right:6,cursor:'pointer'}} />
                                     {row.editName?<input onChange={(event=>{setBanners(Banners => [...Banners].map(b => b.id === row.id ? ({...b, name:event.target.value}) : b))})} style={{color:'black',fontFamily:'mb',fontSize:17,backgroundColor:'rgba(0,0,0,0)',border:0,cursor:'pointer',padding:'8px 24px'}} value={row.name} />:<p style={{fontFamily:'mb',fontSize:17,color:'rgba(0,0,0,0.7)',margin:0,padding:'8px 24px'}} >{row.name}</p>}  <img onClick={()=>setBanners(Banners => [...Banners].map(b => b.id === row.id ? ({...b, editName:!row.editName}) : b))} src="/static/pen.png" style={{height:11,width:11,position:'absolute',right:30,cursor:'pointer',opacity:0.7}} />
 

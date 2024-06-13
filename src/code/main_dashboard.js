@@ -96,7 +96,7 @@ function MDashb(p) {
             <div style={{height:70,width:'100%',flexDirection:'row',display:'flex'}} >
                 <div style={{height:'100%',width:330,backgroundColor:'#FF9900',position:'relative'}} >
                     <img onClick={()=>{SetOpen(!open);SetTab(0)}} src={"/static/arrow.png"} style={{cursor:'pointer',height:30,width:30,right:20,top:20,position:'absolute',transform:open?'rotate(270deg)':'rotate(90deg)',cursor:'pointer'}}  />
-                    <img src={logo} alt="" style={{height:60,width:120,marginLeft:10}} />
+                    <img src={"/static/bunkerz_original.png"} alt="" style={{height:60,width:160,marginLeft:10}} />
                 </div>
                 <div style={{height:'100%',width:width-690,backgroundColor:'#FFBB54',display:'flex',alignItems:'center',justifyContent:'center'}} >
                     <div style={{width:'91%',display:'flex',flexDirection:'row',justifyContent:'center',alignItems:'center',backgroundColor:'#FFDBA4',padding:10,borderRadius:6}} >

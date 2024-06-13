@@ -702,3 +702,86 @@ transform: translateX(-50%); /* Adjust the distance to slide */
 .dragdrop:hover{
     border:2px solid #ff9900;
 }
+
+
+
+
+.tree {
+    position: relative;
+    margin-left: 0px;
+    padding-left: 20px;
+}
+
+.treebox {
+    position: relative;
+    padding: 10px;
+    margin: 10px 0;
+    background-color: #fff;
+    border: 1px solid transparent;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    z-index: 1;
+    font-family: 'mb';
+    box-sizing: border-box;
+    cursor: pointer;
+}
+
+.tree::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 1px;
+    bottom: 0;
+    width: 2px;
+    background-color: rgb(74, 65, 52);
+}
+
+.tree > .treebox::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    height: 50%;
+    width: 2px;
+    background-color: rgb(74, 65, 52);
+}
+
+.tree > .treebox::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: -20px;
+    height: 2px;
+    width: 20px;
+    background-color: rgb(74, 65, 52);
+}
+
+
+.tree::after {
+    content: "";
+    position: absolute;
+    left: 1px;
+    bottom: 0;
+    width: 20px;
+    height: 18px;
+    background-color: transparent;
+    border-top: rgb(74, 65, 52) 2px solid;
+    border-left: #F6F3EF 2px solid;
+}
+
+.treebox:hover {
+    border: 1px solid #f90;
+    
+}
+
+
+
+
+
+
+
+
+.tree > .treebox:last-child::after {
+    background-color: #F6F3EF;
+    margin-top: 2px;
+}

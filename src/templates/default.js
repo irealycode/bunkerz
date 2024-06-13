@@ -123,7 +123,7 @@ function DefaultT(p) {
                                     let divheight = bannerdiv.height?bannerdiv.hdivpx?bannerdiv.height:bannerdiv.height.toString()+'%':'auto'
                                     let divWidth = bannerdiv.width?bannerdiv.wdivpx?bannerdiv.width:bannerdiv.width.toString()+'%':'auto'
                                     return(
-                                        <div key={y} style={{border:editing && bannerdiv.id == sectionInUse?'2px dotted #ff9900':0,boxSizing:'border-box',width:divWidth,height:divheight,justifyContent:'center',display:'flex',flexDirection:bannerdiv.fdirection,right:rightPosition,left:leftPosition,transform:bannerdiv.align >= -0.1 && bannerdiv.align <= 0.1?'translateX(-50%)':'translateX(0px)',whiteSpace:'nowrap',bottom:bottomPosition,top:topPosition,marginLeft:bannerdiv.marginH,marginRight:bannerdiv.marginH,zIndex:2,position:'absolute'}} >
+                                        <div key={y} style={{border:editing && bannerdiv.id == sectionInUse?'1px dotted #ff9900':0,boxSizing:'border-box',width:divWidth,height:divheight,justifyContent:'center',display:'flex',flexDirection:bannerdiv.fdirection,right:rightPosition,left:leftPosition,transform:bannerdiv.align >= -0.1 && bannerdiv.align <= 0.1?'translateX(-50%)':'translateX(0px)',whiteSpace:'nowrap',bottom:bottomPosition,top:topPosition,marginLeft:bannerdiv.marginH,marginRight:bannerdiv.marginH,zIndex:2,position:'absolute'}} >
                                             {
                                                 bannerTexts.map((bannerText,i)=>{
                                                     if (bannerText.parent_id == bannerdiv.id) {
