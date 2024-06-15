@@ -774,14 +774,32 @@ transform: translateX(-50%); /* Adjust the distance to slide */
     
 }
 
-
-
-
-
-
-
-
 .tree > .treebox:last-child::after {
     background-color: #F6F3EF;
     margin-top: 2px;
 }
+
+.draggable {
+    position: absolute;
+    width: 330px;
+    height: 400px;
+    background-color: #F6F3EF;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.5);
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 20;
+    user-select: none; /* Prevent text selection */
+  }
+
+  * {
+    -ms-overflow-style: none;  /* Internet Explorer and Edge */
+    scrollbar-width: none;  /* Firefox */
+  }
+  
+  /* For WebKit browsers (Chrome, Safari, etc.) */
+  *::-webkit-scrollbar {
+    display: none;
+  }

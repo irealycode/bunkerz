@@ -9,6 +9,7 @@ import '../style/home.css'
 import axios from 'axios'; import { host } from '../code/imports/imp';
 import DefaultT from '../templates/default';
 import ProductT from '../templates/product';
+import CompEditor from './admin_comps/editComp';
 // IMPORT ProductT from '../templates/products'
 
 
@@ -19,8 +20,11 @@ function Admin() {
 
 
     const [bannerTexts,setBannerTexts] = React.useState([])
+    const [selectedBannerText,setSelectedBannerText] = React.useState(null)
     const [bannerImgs,setBannerImgs] = React.useState([])
+    const [selectedBannerImg,setSelectedBannerImg] = React.useState(null)
     const [bannerButtons,setBannerButtons] = React.useState([])
+    const [selectedBannerButton,setSelectedBannerButton] = React.useState(null)
     const [showSliders,setShowSliders] = React.useState([])
     const [bannerDivs,setBannerDivs] = React.useState([])
     const [Banners,setBanners] = React.useState([])
@@ -39,6 +43,8 @@ function Admin() {
     const [addSection,setAddSection] = React.useState({active:false})
     const [page,setPage] = React.useState(false)// a dict did not work
     const [pagen,setPageN] = React.useState('home')
+    const [showCompEditor,setShowCompEditor] = React.useState(false)
+
 
     const [draggedRow, setDraggedRow] = React.useState(null);
     // end
@@ -404,6 +410,18 @@ function Admin() {
         scrollToId(widget.parent_id)
     }
 
+
+    //Slider
+    //Slider
+    //Slider
+    //Slider //Slider
+    //Slider
+    //Slider
+    //Slider //Slider
+    //Slider
+    //Slider
+    //Slider
+
     function rmshowSliderImg(id) {
         const tempfiles = Array.from(showSlider.files)
         console.log(tempfiles)
@@ -418,6 +436,7 @@ function Admin() {
             upload_slides(id,showSlider.files[xxd])
           }
       }
+      
 
       async function upload_slides(id,f){
         if (id == showSlider.sliderID) {
@@ -435,6 +454,26 @@ function Admin() {
         }
         
     }
+
+
+     //Slider
+    //Slider
+    //Slider
+    //Slider //Slider
+    //Slider
+    //Slider
+    //Slider //Slider
+    //Slider
+    //Slider
+    //Slider
+
+
+    const deselectAllBanners = () => {
+        setSelectedBannerImg(null);
+        setSelectedBannerText(null);
+        setSelectedBannerButton(null);
+    } 
+
 
     if(jid){
         return (
@@ -1334,6 +1373,9 @@ function Admin() {
                     
             </div>
 
+            
+
+            
             <div style={{height:63,borderBottom:'2px solid black',width:width-360,backgroundColor:backgroundColorAdmin,position:'absolute',right:0,zIndex:11,display:'flex',flexDirection:'row',alignItems:'center',justifyContent:'center'}} >
                 <div style={{display:'flex',flexDirection:'row',position:'absolute',left:10}} >
                     <p style={{fontFamily:'mc',fontSize:19,color:'rgba(0,0,0,0.5)',margin:0,paddingTop:10,paddingBottom:4,paddingRight:5,paddingLeft:17,textAlign:'center'}} >Page</p>
@@ -1393,7 +1435,7 @@ function Admin() {
                                                                     {
                                                                         bannerTexts.map((bt,yyy)=>{
                                                                             if (bt.parent_id==bd.id) {
-                                                                                return(<div style={{backgroundColor:'rgb(234, 230, 223)',color: 'rgba(0,0,0,0.7)'}}  key={bt.id} className="treebox">Text box</div>)
+                                                                                return(<div onClick={()=>{deselectAllBanners();setSelectedBannerText([yyy,bn.name.replace(/\s+/g, '')]);setShowCompEditor(true)}} style={{backgroundColor:'rgb(234, 230, 223)',color: 'rgba(0,0,0,0.7)'}}  key={bt.id} className="treebox">Text box</div>)
                                                                                 
                                                                             }else{
                                                                                 return null
@@ -1403,7 +1445,7 @@ function Admin() {
                                                                     {
                                                                         bannerImgs.map((bi,yyy)=>{
                                                                             if (bi.parent_id==bd.id) {
-                                                                                return(<div style={{backgroundColor:'rgb(234, 230, 223)',color: 'rgba(0,0,0,0.7)'}}  key={bi.id} className="treebox">Image box</div>)
+                                                                                return(<div  onClick={()=>{deselectAllBanners();setSelectedBannerImg([yyy,bn.name.replace(/\s+/g, '')]);setShowCompEditor(true)}} style={{backgroundColor:'rgb(234, 230, 223)',color: 'rgba(0,0,0,0.7)'}}  key={bi.id} className="treebox">Image box</div>)
                                                                                 
                                                                             }else{
                                                                                 return null
@@ -1413,7 +1455,7 @@ function Admin() {
                                                                     {
                                                                         bannerButtons.map((bb,yyy)=>{
                                                                             if (bb.parent_id==bd.id) {
-                                                                                return(<div style={{backgroundColor:'rgb(234, 230, 223)',color: 'rgba(0,0,0,0.7)'}}  key={bb.id} className="treebox">Button</div>)
+                                                                                return(<div onClick={()=>{deselectAllBanners();setSelectedBannerButton([yyy,bn.name.replace(/\s+/g, '')]);setShowCompEditor(true)}} style={{backgroundColor:'rgb(234, 230, 223)',color: 'rgba(0,0,0,0.7)'}}  key={bb.id} className="treebox">Button</div>)
                                                                                 
                                                                             }else{
                                                                                 return null
@@ -1445,29 +1487,6 @@ function Admin() {
                                 })
                             }
                         </div>
-                        {/* <div className="tree">
-                            
-                            <div className="treebox">First level</div>
-                            <div className="tree">
-                                <div className="treebox">Second level</div>
-                                <div className="treebox">Second level</div>
-                                <div className="tree">
-                                    <div className="treebox">Third level</div>
-                                    <div className="tree">
-                                        <div className="treebox">Fourth level</div>
-                                        <div className="treebox">Fourth level</div>
-                                        <div className="treebox">Fourth level</div>
-                                    </div>
-                                    <div className="treebox">Third level</div>
-                                    <div className="tree">
-                                        <div className="treebox">Fourth level</div>
-                                        <div className="treebox">Fourth level</div>
-                                        <div className="treebox">Fourth level</div>
-                                    </div>
-                                </div>
-                            </div>
-                            <div className="treebox">First level</div>
-                        </div> */}
                     </div>
             </div>
 
@@ -1511,7 +1530,7 @@ function Admin() {
                             onDrop={onDrop}
                             >
                                 <div onClick={()=>{setBanners(Banners => [...Banners].map(b => b.id === row.id ? ({...b, editable:true}) : b))}} style={{cursor:'grab',border:'2px solid #CAC2B6',width:'90%',margin:'5px 0px',padding:5,color:'rgba(0,0,0,0.8)',fontFamily:'mb',fontSize:17,backgroundColor:backgroundColorAdmin,borderRadius:3,display:'flex',alignItems:'center',justifyContent:'start',position:'relative'}} >
-                                    <img src={'/static/column.png'} style={{height:23,width:16,opacity:0.5,marginBottom:2,position:'absolute',left:4}} />
+                                    <img src={'/static/column.png'} style={{height:18,width:16,opacity:0.5,marginBottom:2,position:'absolute',left:4}} />
                                     <img onClick={()=>Rmb(row.id)} src={'/static/trash.png'} style={{height:15,width:15,opacity:0.7,marginBottom:2,position:'absolute',right:6,cursor:'pointer'}} />
                                     {row.editName?<input onChange={(event=>{setBanners(Banners => [...Banners].map(b => b.id === row.id ? ({...b, name:event.target.value}) : b))})} style={{color:'black',fontFamily:'mb',fontSize:17,backgroundColor:'rgba(0,0,0,0)',border:0,cursor:'pointer',padding:'8px 24px'}} value={row.name} />:<p style={{fontFamily:'mb',fontSize:17,color:'rgba(0,0,0,0.7)',margin:0,padding:'8px 24px'}} >{row.name}</p>}  <img onClick={()=>setBanners(Banners => [...Banners].map(b => b.id === row.id ? ({...b, editName:!row.editName}) : b))} src="/static/pen.png" style={{height:11,width:11,position:'absolute',right:30,cursor:'pointer',opacity:0.7}} />
 
@@ -1637,7 +1656,7 @@ function Admin() {
                     </div>
             </div>
         
-
+            {showCompEditor?<CompEditor setShowCompEditor={setShowCompEditor} setBannerTexts={setBannerTexts} bannerTexts={bannerTexts} bannerText={selectedBannerText!==null?bannerTexts[selectedBannerText[0]]:null} storeProducts={storeProducts} setBannerImgs={setBannerImgs} bannerImgs={bannerImgs} bannerImg={selectedBannerImg!==null?bannerImgs[selectedBannerImg[0]]:null} setBannerButtons={setBannerButtons} bannerButtons={bannerButtons} bannerButton={selectedBannerButton!==null?bannerButtons[selectedBannerButton[0]]:null} parentname={selectedBannerImg?selectedBannerImg[1]:selectedBannerText?selectedBannerText[1]:selectedBannerButton?selectedBannerButton[1]:null} />:null}
 
             <div style={{position:'absolute',width:width-370,height:height-75,right:5,top:70,overflowY:'scroll',overflowX:'hidden',scrollbarWidth: 'none', msOverflowStyle:'none',boxShadow:'0 0 5px 5px #CAC2B6'}} >
             {/* <DefaultT width={width-460} MaxWidth={true} height={height} banners={Banners} bannerTexts={bannerTexts} bannerImgs={bannerImgs} bannerDivs={bannerDivs} bannerProducts={products} storeProducts={storeProducts}   /> */}
