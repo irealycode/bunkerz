@@ -1,4 +1,6 @@
-# Bunkerz: Revolutionizing Online Marketplaces with Encryption
+# Bunkerz
+
+## Revolutionizing Online Marketplaces with Encryption
 
 **Bunkerz** is an online marketplace and website builder similar to Shopify, designed to enable users to easily create their own online stores and sell products. What sets Bunkerz apart is the integration of advanced encryption protocols, such as RSA, to secure online shops and transactions. This ensures that all user data, payments, and sensitive information are fully encrypted and safe from cyber threats.
 
