@@ -23,7 +23,7 @@ To get started with Bunkerz, follow these steps:
 
 - Node.js (v14 or above)
 - MongoDB (for storing user data, products, and transactions)
-- A web server (e.g., Apache, Nginx) for hosting the platform
+- Web servser (Flask)
 
 ### Creating a New Store
 
